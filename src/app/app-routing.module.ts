@@ -7,14 +7,22 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { NgModule } from '@angular/core';
 import { Routes, PreloadAllModules } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { HealthreportComponent } from './healthreport/healthreport.component';
+import { PtoComponent } from './pto/pto.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     {
-        path: 'home', component: SigninComponent
+        path: 'home', component: HealthreportComponent
     },
     {
         path: 'login', component: SigninComponent
+    },
+    {
+        path: 'healthreport', component: HealthreportComponent
+    },
+    {
+        path: 'pto', component: PtoComponent
     },
     {
         path: 'aboutus', component: AboutusComponent,
@@ -38,7 +46,7 @@ const appRoutes: Routes = [
         ]
     },
     {
-        path: '**', component: SigninComponent
+        path: '**', component: HealthreportComponent
     },
 ];
 

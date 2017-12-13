@@ -11,6 +11,9 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ProfileComponent } from './aboutus/profile/profile.component';
 import { TeamComponent } from './aboutus/team/team.component';
 import { ContactusComponent } from './aboutus/contactus/contactus.component';
+import { SidenavComponent } from './core/sidenav/sidenav.component';
+import { HealthreportComponent } from './healthreport/healthreport.component';
+import { PtoComponent } from './pto/pto.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { ContactusComponent } from './aboutus/contactus/contactus.component';
     AboutusComponent,
     ProfileComponent,
     TeamComponent,
-    ContactusComponent
+    ContactusComponent,
+    SidenavComponent,
+    HealthreportComponent,
+    PtoComponent
   ],
   imports: [
     BrowserModule,

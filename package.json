@@ -20,7 +20,7 @@
     "@angular/cli": "1.2.6",
     "@angular/compiler-cli": "^4.0.0",
     "typescript": "~2.3.3",
-    "express":"4.16.2",
+    "express": "4.16.2",
     "body-parser": "1.18.2",
     "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
