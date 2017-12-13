@@ -14,6 +14,16 @@ import { ContactusComponent } from './aboutus/contactus/contactus.component';
 import { SidenavComponent } from './core/sidenav/sidenav.component';
 import { HealthreportComponent } from './healthreport/healthreport.component';
 import { PtoComponent } from './pto/pto.component';
+import { ChartModule } from 'angular2-highcharts';
+import * as highcharts from 'highcharts';
+
+declare let require: any;
+export function highchartsFactory() {
+  const highcharts = require('highcharts');
+  const dd = require('highcharts/modules/drilldown');
+  dd(highcharts);
+  return highcharts;
+}
 
 @NgModule({
   declarations: [
@@ -32,9 +42,14 @@ import { PtoComponent } from './pto/pto.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartModule.forRoot(require('highcharts'))
   ],
-  providers: [AuthService],
+  providers: [{
+    provide: AuthService,
+    useFactory: highchartsFactory
+  },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
