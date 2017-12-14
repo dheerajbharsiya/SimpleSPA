@@ -1,3 +1,4 @@
+import {environment} from './../environments/environment'
 import { AuthService } from './core/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,8 @@ import { PtoComponent } from './pto/pto.component';
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import {AngularFireModule} from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database'
 declare let require: any;
 export function highchartsFactory() {
   const highcharts = require('highcharts');
@@ -43,7 +46,9 @@ export function highchartsFactory() {
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartModule
+    ChartModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [{
     provide: HighchartsStatic,
