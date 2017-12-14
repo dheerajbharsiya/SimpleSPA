@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HealthData } from '../data/healthData';
 import { HealthDataEstimated } from '../data/healthData';
+import { element } from 'protractor';
 @Component({
   selector: 'app-health-report-dynamic',
   templateUrl: './health-report-dynamic.component.html',
@@ -9,8 +10,23 @@ import { HealthDataEstimated } from '../data/healthData';
 export class HealthReportDynamicComponent implements OnInit {
 
   public options: any;
+  public healthData = HealthData;
   constructor() {
+    this.healthData = this.preProcessData(this.healthData);
     this.renderChart();
+  }
+
+  public preProcessData(data) {
+    data.forEach(element => {
+      if (element.defectCount > 10 || element.y < 30) {
+        element['color'] = 'red'
+      } else if (element.y < 39) {
+        element['color'] = '#FFBF00'
+      } else {
+        element['color'] = 'green'
+      }
+    });
+    return data;
   }
 
   ngOnInit() {
@@ -24,7 +40,17 @@ export class HealthReportDynamicComponent implements OnInit {
       },
       credits: false,
       title: {
-        text: "Health Report"
+        text: "Health Report",
+        style: {
+          color: '#6d7fcc',
+          fontWeight: 'bold'
+        }
+      },
+      legend: {
+        itemStyle: {
+          fontSize: '14px',
+          color: "#6d7fcc"
+        }
       },
       xAxis: {
         type: 'category',
@@ -35,13 +61,17 @@ export class HealthReportDynamicComponent implements OnInit {
       },
       yAxis: {
         title: {
-          text: "Stories"
+          text: "Storie Points",
+          style: {
+            color: '#6d7fcc',
+            fontWeight: 'bold'
+          }
         }
       },
       tooltip: {
         pointFormatter: function () {
           let s = "";
-          if (this.y < 35) {
+          if (this.y < 35 || this.defectCount > 10) {
             s += this.tooltip
           } else {
             s += 'Point Delivered ' + this.y;
@@ -57,34 +87,29 @@ export class HealthReportDynamicComponent implements OnInit {
           }
         },
         column: {
-          zones: [{
-            value: 35, // Values up to 10 (not including) ...
-            color: 'red' // ... have the color blue.
-          }, {
-            value: 39,
-            color: '#FFBF00' // Values from 10 (including) and up have the color red
-          },
-          {
-            color: 'green' // Values from 10 (including) and up have the color red
-          }]
+          // zones: [{
+          //   value: 35, // Values up to 10 (not including) ...
+          //   color: 'red' // ... have the color blue.
+          // }, {
+          //   value: 39,
+          //   color: '#FFBF00' // Values from 10 (including) and up have the color red
+          // },
+          // {
+          //   color: 'green' // Values from 10 (including) and up have the color red
+          // }]
         }
       },
       series: [{
         name: 'Sprints',
-        data: HealthData,
-        legends: {
-          style: {
-            color: 'black'
-          }
-        }
+        data: this.healthData
       },
       {
         type: 'spline',
-        name: 'Estimated Points',
+        name: 'Number of Defects',
         data: HealthDataEstimated,
         tooltip: {
           pointFormatter: function () {
-            return "Estimated Value: " + this.y
+            return "Defects Count: " + this.y
           }
         }
       }]

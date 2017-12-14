@@ -20,7 +20,7 @@ const appRoutes: Routes = [
         path: 'login', component: SigninComponent
     },
     {
-        path: 'healthreport', component: HealthreportComponent
+        path: 'healthreport', component: HealthReportDynamicComponent
     },
     {
         path: 'pto', component: PtoComponent
