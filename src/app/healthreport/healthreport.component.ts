@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { HealthData } from '../data/healthData';
 
 export function createPopup() {
   var popup = open("", "Popup", "width=300,height=200");
@@ -19,10 +21,23 @@ export function createPopup() {
 
 export class HealthreportComponent implements OnInit {
   private options: any;
-  constructor() {
+  constructor(private httpClient: HttpClient) {
+    console.log(HealthData);
+    this.renderGraph();
+  }
+
+
+  ngOnInit() {
+
+  }
+
+  public renderGraph() {
     this.options = {
       chart: {
         type: 'column'
+      },
+      credits: {
+        enabled: false
       },
       title: {
         text: 'Health Report'
@@ -83,20 +98,20 @@ export class HealthreportComponent implements OnInit {
           }
         },
 
-      tooltip: {
-        pointFormatter: function () {
-          var s = '<b>';
-          if (this.y < 35) {
-            s += 'Estimated Story Points have not been deliverd'
-          } else {
-            s += 'Point Delivered ' + this.y;
-          }
+        tooltip: {
+          pointFormatter: function () {
+            var s = '<b>';
+            if (this.y < 35) {
+              s += 'Estimated Story Points have not been deliverd'
+            } else {
+              s += 'Point Delivered ' + this.y;
+            }
 
-          s += '</b>';
-          return s;
+            s += '</b>';
+            return s;
+          },
+          //shared: true
         },
-        //shared: true
-      },
         data: [
           {
             name: 'Points Achieved',
@@ -135,7 +150,7 @@ export class HealthreportComponent implements OnInit {
         pointInterval: 24 * 3600 * 1000 * 15,
         tooltip: {
           pointFormatter: function () {
-              return "Estimated Value"+this.y
+            return "Estimated Value" + this.y
           }
         }
       }
@@ -166,9 +181,6 @@ export class HealthreportComponent implements OnInit {
       //   }]
       // }
     }
-  }
-
-  ngOnInit() {
   }
 
 }
