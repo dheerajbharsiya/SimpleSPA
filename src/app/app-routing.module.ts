@@ -9,11 +9,12 @@ import { Routes, PreloadAllModules } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { HealthreportComponent } from './healthreport/healthreport.component';
 import { PtoComponent } from './pto/pto.component';
+import { HealthReportDynamicComponent } from './health-report-dynamic/health-report-dynamic.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     {
-        path: 'home', component: HealthreportComponent
+        path: 'home', component: HealthReportDynamicComponent
     },
     {
         path: 'login', component: SigninComponent
