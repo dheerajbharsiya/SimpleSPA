@@ -1,26 +1,59 @@
-<h2 class="m-x3">Apply PTO</h2>
+<h2 class="">Apply PTO</h2>
 <form #f1="ngForm" (ngSubmit)="submitApply(f1)">
-  <div class="col-lg-12 form-group">
-    <label for="fromDate" class="col-lg-3">From Date</label>
-    <input type="date" required ngModel name="fromDate" #fromDate=ngModel class="form-control width25" id="fromDate">
-    <div class="alert alert-danger" *ngIf="fromDate.touched && !fromDate.valid">From Date is Required</div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+    <label for="fromDate" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">From Date</label>
+    <div class="col-lg-3 col-md-5 col-sm-6 col-xs-12">
+      <input type="date" required ngModel name="fromDate" #fromDate=ngModel class="form-control col-lg-3 col-md-3 col-sm-6 col-xs-12"
+        id="fromDate">
+        
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <p class="col-lg-6 col-md-8 col-sm-9 col-xs-12 m-xiv-top alert alert-danger" *ngIf="fromDate.touched && !fromDate.valid">From Date is Required</p>
+    </div>
   </div>
-  <div class="col-lg-12 form-group">
-    <label for="toDate" class="col-lg-3">To Date</label>
-    <input type="date" required ngModel name="toDate" #toDate=ngModel class="form-control width25" id="toDate">
-    <div class="alert alert-danger" *ngIf="toDate.touched && !toDate.valid">To Date is Required</div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+    <label for="toDate" class="col-lg-3 col-md-3 col-sm-3 col-xs-12">To Date</label>
+    <div class="col-lg-3 col-md-5 col-sm-6 col-xs-12">
+      <input type="date" required ngModel name="toDate" #toDate=ngModel class="form-control" id="toDate">
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="toDate.touched && !toDate.valid">
+      <p class="col-lg-6 col-md-8 col-sm-9 col-xs-12 m-xiv-top alert alert-danger">To Date is Required</p>
+    </div>
   </div>
-  <button class="btn btn-primary m-x3" type="submit">Submit</button>
-</form>
-<p *ngIf="submitted">You have applied PTO from {{f1.value.fromDate}} to {{f1.value.toDate}}</p>
+  <div class="p-x3-left">
+    <button class="btn btn-primary " type="submit">Submit</button>
+  </div>
 
-<h2 class="m-x3">Who are on PTO ?</h2>
-<form #f2="ngForm" (ngSubmit)="submitDate(f2)">
+</form>
+<div class="p-x3-left m-xiv-top">
+  <p class="" *ngIf="submitted">You have applied PTO from <b>{{f1.value.fromDate}}</b> to <b>{{f1.value.toDate}}</b></p>
+</div>
+
+<h2 class="">Who are on PTO ?</h2>
+<!-- <form #f2="ngForm" (ngSubmit)="submitDate(f2)">
   <div class="col-lg-12 form-group">
     <label for="ptoDate" class="col-lg-3">Date</label>
     <input type="date" required ngModel name="ptoDate" #ptoDate=ngModel class="form-control width25" id="ptoDate">
     <div class="alert alert-danger" *ngIf="ptoDate.touched && !ptoDate.valid">Date is Required</div>
   </div>
-  <button class="btn btn-primary m-x3" type="submit">Search</button>
-</form>
-
+  <button class="btn btn-primary " type="submit">Search</button>
+</form> -->
+<div class="p-x3-left">
+  <input class=" " #ptoDate placeholder="Search By Date" />
+  <table class="table table-striped ">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>PTO DAte</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of data | datepipe: ptoDate.value">
+        <td>{{employee.name}}</td>
+        <td>{{employee.ptoDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{employee.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
