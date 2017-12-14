@@ -21,6 +21,7 @@ import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { DatepipePipe } from './datepipe.pipe';
+import { HealthReportDynamicComponent } from './health-report-dynamic/health-report-dynamic.component'
 declare let require: any;
 export function highchartsFactory() {
   const highcharts = require('highcharts');
@@ -42,6 +43,7 @@ export function highchartsFactory() {
     HealthreportComponent,
     PtoComponent,
     DatepipePipe
+    HealthReportDynamicComponent
   ],
   imports: [
     BrowserModule,
