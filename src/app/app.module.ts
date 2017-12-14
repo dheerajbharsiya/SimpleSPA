@@ -16,7 +16,7 @@ import { HealthreportComponent } from './healthreport/healthreport.component';
 import { PtoComponent } from './pto/pto.component';
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
-
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 declare let require: any;
 export function highchartsFactory() {
   const highcharts = require('highcharts');
@@ -43,12 +43,13 @@ export function highchartsFactory() {
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartModule.forRoot(require('highcharts'))
+    ChartModule
   ],
   providers: [{
-    provide: AuthService,
+    provide: HighchartsStatic,
     useFactory: highchartsFactory
   },
+  AuthService
   ],
   bootstrap: [AppComponent]
 })
