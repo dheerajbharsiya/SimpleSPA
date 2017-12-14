@@ -102,8 +102,14 @@ a.article, a.article:hover {
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
-#content {
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
+// #content {
+//     padding: 20px;
+//     min-height: 100vh;
+//     transition: all 0.3s;
+//     background-image: 'images/background.png';
+// }
+
+.container {
+    background-image: url('images/background.png');
+    // background: 'images/background.png';
 }
