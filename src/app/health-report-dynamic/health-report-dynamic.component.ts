@@ -35,10 +35,10 @@ export class HealthReportDynamicComponent implements OnInit {
   renderChart() {
     this.options = {
       chart: {
-        type: "column",
-        width: 800
+        type: "column"
       },
       credits: false,
+      maintainAspectRatio: false,
       title: {
         text: "Health Report",
         style: {
@@ -99,6 +99,33 @@ export class HealthReportDynamicComponent implements OnInit {
           // }]
         }
       },
+      responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 768
+            },
+            // Make the labels less space demanding on mobile
+            chartOptions: {
+                xAxis: {
+                    labels: {
+                        formatter: function () {
+                            return this.value.charAt(0);
+                        }
+                    }
+                },
+                yAxis: {
+                    labels: {
+                        align: 'left',
+                        x: 0,
+                        y: -2
+                    },
+                    title: {
+                        text: ''
+                    }
+                }
+            }
+        }]
+    },
       series: [{
         name: 'Sprints',
         data: this.healthData
