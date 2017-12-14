@@ -19,8 +19,10 @@ export class HealthReportDynamicComponent implements OnInit {
   renderChart() {
     this.options = {
       chart: {
-        type: "column"
+        type: "column",
+        width: 800
       },
+      credits: false,
       title: {
         text: "Health Report"
       },
@@ -33,19 +35,17 @@ export class HealthReportDynamicComponent implements OnInit {
       },
       yAxis: {
         title: {
-          text: "Scores"
+          text: "Stories"
         }
       },
       tooltip: {
         pointFormatter: function () {
-          var s = '<b>';
+          let s = "";
           if (this.y < 35) {
-            s += 'Baseline Story Points have not been deliverd'
+            s += this.tooltip
           } else {
             s += 'Point Delivered ' + this.y;
           }
-
-          s += '</b>';
           return s;
         }
       },
@@ -71,7 +71,12 @@ export class HealthReportDynamicComponent implements OnInit {
       },
       series: [{
         name: 'Sprints',
-        data: HealthData
+        data: HealthData,
+        legends: {
+          style: {
+            color: 'black'
+          }
+        }
       },
       {
         type: 'spline',
