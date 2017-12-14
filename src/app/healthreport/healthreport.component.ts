@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { HealthData } from '../data/healthData';
 
 export function createPopup() {
@@ -21,7 +20,7 @@ export function createPopup() {
 
 export class HealthreportComponent implements OnInit {
   private options: any;
-  constructor(private httpClient: HttpClient) {
+  constructor() {
     console.log(HealthData);
     this.renderGraph();
   }
