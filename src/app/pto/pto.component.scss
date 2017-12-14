@@ -22,3 +22,9 @@ h2 {
 .m-xiv-top{
     margin-top: 15px;
 }
+p,td,label,h2,th{
+    color: #ffffff;
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: transparent;
+}

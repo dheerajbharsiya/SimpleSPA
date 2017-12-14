@@ -42,7 +42,7 @@ export function highchartsFactory() {
     SidenavComponent,
     HealthreportComponent,
     PtoComponent,
-    DatepipePipe
+    DatepipePipe,
     HealthReportDynamicComponent
   ],
   imports: [
