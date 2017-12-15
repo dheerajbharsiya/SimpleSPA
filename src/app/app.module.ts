@@ -1,4 +1,4 @@
-import {environment} from './../environments/environment'
+import { environment } from './../environments/environment'
 import { AuthService } from './core/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,10 +18,17 @@ import { PtoComponent } from './pto/pto.component';
 import { ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
-import {AngularFireModule} from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { DatepipePipe } from './datepipe.pipe';
 import { HealthReportDynamicComponent } from './health-report-dynamic/health-report-dynamic.component'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material';
+
+
 declare let require: any;
 export function highchartsFactory() {
   const highcharts = require('highcharts');
@@ -52,13 +59,18 @@ export function highchartsFactory() {
     ReactiveFormsModule,
     ChartModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NoopAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   providers: [{
     provide: HighchartsStatic,
     useFactory: highchartsFactory
   },
-  AuthService
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

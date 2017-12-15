@@ -60,7 +60,7 @@ export class HealthreportComponent implements OnInit {
       },
 
       legend: {
-        enabled: false
+        enabled: true
       },
 
       plotOptions: {

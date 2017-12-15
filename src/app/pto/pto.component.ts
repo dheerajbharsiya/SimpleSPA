@@ -9,7 +9,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class PtoComponent implements OnInit {
   public submitted = false;
   public data;
-
+  public ptoData: {
+    fromDate: '12/12/2017',
+    toDate: '13/12/2017'
+  };
   constructor(public db: AngularFireDatabase) { }
   submitApply(f1) {
     this.submitted = true;
