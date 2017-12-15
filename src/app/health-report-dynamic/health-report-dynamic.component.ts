@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, style } from '@angular/core';
 import { HealthData } from '../data/healthData';
 import { HealthDataEstimated } from '../data/healthData';
 import { element } from 'protractor';
@@ -47,6 +47,9 @@ export class HealthReportDynamicComponent implements OnInit {
         }
       },
       legend: {
+        labelFormatter: function () {
+          return this.name + ' (click to hide)';
+        },
         itemStyle: {
           fontSize: '14px',
           color: "#6d7fcc"
@@ -56,7 +59,11 @@ export class HealthReportDynamicComponent implements OnInit {
         type: 'category',
         allowDecimals: false,
         title: {
-          text: ""
+          text: "Sprints",
+          style: {
+            color: '#6d7fcc',
+            fontWeight: 'bold'
+          }
         }
       },
       yAxis: {
@@ -101,31 +108,34 @@ export class HealthReportDynamicComponent implements OnInit {
       },
       responsive: {
         rules: [{
-            condition: {
-                maxWidth: 768
-            },
-            // Make the labels less space demanding on mobile
-            chartOptions: {
-                xAxis: {
-                    labels: {
-                        formatter: function () {
-                            return this.value.charAt(0);
-                        }
-                    }
-                },
-                yAxis: {
-                    labels: {
-                        align: 'left',
-                        x: 0,
-                        y: -2
-                    },
-                    title: {
-                        text: ''
-                    }
+          condition: {
+            maxWidth: 768
+          },
+          // Make the labels less space demanding on mobile
+          chartOptions: {
+            xAxis: {
+              labels: {
+                formatter: function () {
+                  return this.value;
                 }
+              },
+              title: {
+                text: 'Sprints'
+              }
+            },
+            yAxis: {
+              labels: {
+                align: 'left',
+                x: 0,
+                y: -2
+              },
+              title: {
+                text: 'Story Points'
+              }
             }
+          }
         }]
-    },
+      },
       series: [{
         name: 'Sprints',
         data: this.healthData

@@ -8,6 +8,6 @@ import {Router} from '@angular/router';
 export class AppComponent {
   title = 'app';
   constructor(router: Router) {
-    router.navigate(['/home']);
+//    router.navigate(['/home']);
   }
 }
