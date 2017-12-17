@@ -28,3 +28,9 @@ p,td,label,h2,th{
 .table-striped>tbody>tr:nth-of-type(odd) {
     background-color: transparent;
 }
+input.mat-input-element {
+    color: #fff;
+}
+label.pad{
+    padding-top: 17px;
+}

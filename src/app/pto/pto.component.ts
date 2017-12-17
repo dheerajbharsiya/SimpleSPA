@@ -17,6 +17,7 @@ export class PtoComponent implements OnInit {
   submitApply(f1) {
     this.submitted = true;
     console.log(f1);
+    
   }
 
   ngOnInit() {
